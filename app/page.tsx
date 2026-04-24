@@ -1,8 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client/react';
 import { GET_PRODUCTS } from '@/lib/graphql/queries';
+
+interface ProductsData {
+  products: Product[];
+  productsCount: number;
+}
 import ProductCard from '@/components/ProductCard';
 import Pagination from '@/components/Pagination';
 import { ProductCardSkeleton } from '@/components/Skeleton';
@@ -25,7 +30,7 @@ export default function HomePage() {
   const [perPage, setPerPage] = useState(25);
 
   const skip = (currentPage - 1) * perPage;
-  const { data, loading, error, refetch } = useQuery(GET_PRODUCTS, {
+  const { data, loading, error, refetch } = useQuery<ProductsData>(GET_PRODUCTS, {
     variables: { skip, take: perPage },
   });
 

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(npx tsc:*)",
+      "Bash(node -e \"const ac = require\\(''@apollo/client''\\); console.log\\(Object.keys\\(ac\\).filter\\(k => k.includes\\(''use''\\) || k.includes\\(''Apollo''\\) || k.includes\\(''Provider''\\)\\).join\\(''\\\\n''\\)\\)\")",
+      "Bash(node -e \"const ac = require\\(''@apollo/client/react''\\); console.log\\(Object.keys\\(ac\\).filter\\(k => k.includes\\(''use''\\) || k.includes\\(''Apollo''\\) || k.includes\\(''Provider''\\)\\).join\\(''\\\\n''\\)\\)\")",
+      "Bash(npm install:*)"
+    ]
+  }
+}

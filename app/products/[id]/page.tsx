@@ -2,7 +2,27 @@
 
 import { useState } from 'react';
 import { useParams } from 'next/navigation';
-import { useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client/react';
+
+interface ProductDetail {
+  id: string;
+  name: string;
+  potency?: string;
+  environment?: string;
+  priceMin: number;
+  priceMax: number;
+  inventory: number;
+  strain?: string;
+  category?: string;
+  useByDate?: string;
+  imageUrl?: string;
+  description?: string;
+  inStock: number;
+}
+
+interface ProductData {
+  product: ProductDetail;
+}
 import Link from 'next/link';
 import { GET_PRODUCT } from '@/lib/graphql/queries';
 import { useCart } from '@/context/CartContext';
@@ -21,7 +41,7 @@ export default function ProductDetailPage() {
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
 
-  const { data, loading, error, refetch } = useQuery(GET_PRODUCT, {
+  const { data, loading, error, refetch } = useQuery<ProductData>(GET_PRODUCT, {
     variables: { id },
   });
 

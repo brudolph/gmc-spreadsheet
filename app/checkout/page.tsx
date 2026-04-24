@@ -2,7 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client/react';
+
+interface SubmitOrderData {
+  submitOrder: {
+    success: boolean;
+    orderId: string;
+    message: string;
+  };
+}
 import { SUBMIT_ORDER, GET_PRODUCTS } from '@/lib/graphql/queries';
 import { useCart } from '@/context/CartContext';
 
@@ -18,7 +26,7 @@ export default function CheckoutPage() {
   const [customerEmail, setCustomerEmail] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
 
-  const [submitOrder, { loading }] = useMutation(SUBMIT_ORDER, {
+  const [submitOrder, { loading }] = useMutation<SubmitOrderData>(SUBMIT_ORDER, {
     refetchQueries: [{ query: GET_PRODUCTS, variables: { skip: 0, take: 25 } }],
   });
 
