@@ -40,3 +40,5 @@ yarn-error.log*
 next-env.d.ts
 client_secret_469560072229.json
 token.json
+test-google-sheets.js
+test-google-sheets copy.js
